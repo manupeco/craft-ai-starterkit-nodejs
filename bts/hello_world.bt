@@ -22,9 +22,15 @@
               "label": ""
             },
             "properties": {
-              "name": "HelloWorld",
+              "name": "WaitForAlarm",
               "inputParams": [],
-              "outputParams": []
+              "outputParams": [
+                {
+                  "key": "type",
+                  "type": "entityKnowledge",
+                  "value": "lastAlarm"
+                }
+              ]
             },
             "children": [],
             "id": "560edcd8-ce33-4a39-a1d6-550a92f5b482",
@@ -36,12 +42,12 @@
               "label": ""
             },
             "properties": {
-              "name": "SayMyName",
+              "name": "Alarm",
               "inputParams": [
                 {
-                  "key": "name",
+                  "key": "type",
                   "type": "entityKnowledge",
-                  "value": "name"
+                  "value": "lastAlarm"
                 }
               ],
               "outputParams": []
