@@ -24,7 +24,13 @@
             "properties": {
               "name": "WaitForAlarm",
               "inputParams": [],
-              "outputParams": []
+              "outputParams": [
+                {
+                  "key": "type",
+                  "type": "entityKnowledge",
+                  "value": "lastAlarm"
+                }
+              ]
             },
             "children": [],
             "id": "560edcd8-ce33-4a39-a1d6-550a92f5b482",
@@ -40,8 +46,8 @@
               "inputParams": [
                 {
                   "key": "type",
-                  "type": "string",
-                  "value": "fire"
+                  "type": "entityKnowledge",
+                  "value": "lastAlarm"
                 }
               ],
               "outputParams": []
