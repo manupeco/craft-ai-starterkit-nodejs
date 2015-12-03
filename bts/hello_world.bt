@@ -24,16 +24,30 @@
             "properties": {
               "name": "WaitForAlarm",
               "inputParams": [],
-              "outputParams": [
-                {
-                  "key": "type",
-                  "type": "entityKnowledge",
-                  "value": "lastAlarm"
-                }
-              ]
+              "outputParams": []
             },
             "children": [],
             "id": "560edcd8-ce33-4a39-a1d6-550a92f5b482",
+            "type": "action"
+          },
+          {
+            "activated": true,
+            "metadata": {
+              "label": ""
+            },
+            "properties": {
+              "name": "Say",
+              "inputParams": [
+                {
+                  "key": "message",
+                  "type": "string",
+                  "value": "Alarm Detected!"
+                }
+              ],
+              "outputParams": []
+            },
+            "children": [],
+            "id": "9fe4339e-24e1-48aa-9892-4445769ad8bd",
             "type": "action"
           },
           {
