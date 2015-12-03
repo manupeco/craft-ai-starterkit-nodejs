@@ -14,7 +14,10 @@
         "metadata": {
           "label": ""
         },
-        "properties": {},
+        "properties": {
+          "statusCondition": "failsIfAnyFails",
+          "retryPolicy": "propagateToRunning"
+        },
         "children": [
           {
             "activated": true,
@@ -22,13 +25,71 @@
               "label": ""
             },
             "properties": {
-              "name": "WaitForAlarm",
-              "inputParams": [],
-              "outputParams": []
+              "op1": {
+                "type": "boolean",
+                "value": "false"
+              },
+              "op2": {
+                "type": "boolean",
+                "value": "true"
+              },
+              "op": "=="
             },
-            "children": [],
-            "id": "560edcd8-ce33-4a39-a1d6-550a92f5b482",
-            "type": "action"
+            "children": [
+              {
+                "activated": true,
+                "metadata": {
+                  "label": ""
+                },
+                "properties": {},
+                "children": [
+                  {
+                    "activated": true,
+                    "metadata": {
+                      "label": ""
+                    },
+                    "properties": {
+                      "name": "WaitForAlarmChange",
+                      "inputParams": [],
+                      "outputParams": [
+                        {
+                          "key": "state",
+                          "type": "entityKnowledge",
+                          "value": "lastState"
+                        }
+                      ]
+                    },
+                    "children": [],
+                    "id": "560edcd8-ce33-4a39-a1d6-550a92f5b482",
+                    "type": "action"
+                  },
+                  {
+                    "activated": true,
+                    "metadata": {
+                      "label": ""
+                    },
+                    "properties": {
+                      "name": "Say",
+                      "inputParams": [
+                        {
+                          "key": "message",
+                          "type": "string",
+                          "value": "Alarm Detected!"
+                        }
+                      ],
+                      "outputParams": []
+                    },
+                    "children": [],
+                    "id": "9fe4339e-24e1-48aa-9892-4445769ad8bd",
+                    "type": "action"
+                  }
+                ],
+                "id": "11f374e1-2cb8-48c0-8dad-e334f0a3e2b4",
+                "type": "sequence"
+              }
+            ],
+            "id": "7d25955d-2713-41e9-b0ef-2f7190a8be1f",
+            "type": "until"
           },
           {
             "activated": true,
@@ -36,178 +97,115 @@
               "label": ""
             },
             "properties": {
-              "name": "Say",
-              "inputParams": [
-                {
-                  "key": "message",
-                  "type": "string",
-                  "value": "Alarm Detected!"
-                }
-              ],
-              "outputParams": []
+              "op1": {
+                "type": "boolean",
+                "value": "false"
+              },
+              "op2": {
+                "type": "boolean",
+                "value": "true"
+              },
+              "op": "=="
             },
-            "children": [],
-            "id": "9fe4339e-24e1-48aa-9892-4445769ad8bd",
-            "type": "action"
-          },
-          {
-            "activated": false,
-            "metadata": {
-              "label": ""
-            },
-            "properties": {},
             "children": [
               {
                 "activated": true,
                 "metadata": {
                   "label": ""
                 },
-                "properties": {
-                  "name": "Wait",
-                  "inputParams": [
-                    {
-                      "key": "time",
-                      "type": "integer",
-                      "value": "3"
-                    }
-                  ],
-                  "outputParams": []
-                },
-                "children": [],
-                "id": "230b9e88-428f-4bd1-955f-99a7b7228879",
-                "type": "action"
-              },
-              {
-                "activated": true,
-                "metadata": {
-                  "label": ""
-                },
-                "properties": {
-                  "name": "GetAlarmState",
-                  "inputParams": [],
-                  "outputParams": [
-                    {
-                      "key": "state",
-                      "type": "entityKnowledge",
-                      "value": "alarmState"
-                    }
-                  ]
-                },
-                "children": [],
-                "id": "453dbf2c-8548-407f-9e48-9c137f36f2db",
-                "type": "action"
-              },
-              {
-                "activated": true,
-                "metadata": {
-                  "label": ""
-                },
-                "properties": {
-                  "active": "false"
-                },
+                "properties": {},
                 "children": [
                   {
                     "activated": true,
                     "metadata": {
                       "label": ""
                     },
-                    "properties": {},
-                    "children": [
-                      {
-                        "activated": true,
-                        "metadata": {
-                          "label": ""
-                        },
-                        "properties": {
-                          "op1": {
-                            "type": "entityKnowledge",
-                            "value": "lastState"
-                          },
-                          "op2": {
-                            "type": "boolean",
-                            "value": "false"
-                          },
-                          "op": "=="
-                        },
-                        "children": [],
-                        "id": "5d25ef5c-4ac8-4eb9-ab85-9d04fa0f6179",
-                        "type": "condition"
+                    "properties": {
+                      "op1": {
+                        "type": "entityKnowledge",
+                        "value": "lastState"
                       },
-                      {
-                        "activated": true,
-                        "metadata": {
-                          "label": ""
-                        },
-                        "properties": {
-                          "name": "Say",
-                          "inputParams": [
-                            {
-                              "key": "message",
-                              "type": "string",
-                              "value": "false alarm"
-                            }
-                          ],
-                          "outputParams": []
-                        },
-                        "children": [],
-                        "id": "922ff7c5-d0a2-419d-8125-1d027d3e302d",
-                        "type": "action"
+                      "op2": {
+                        "type": "boolean",
+                        "value": "true"
                       },
-                      {
-                        "activated": true,
-                        "metadata": {
-                          "label": ""
-                        },
-                        "properties": {},
-                        "children": [],
-                        "id": "46f57c04-7bc3-4934-810b-1d8b71eb549e",
-                        "type": "failure"
-                      }
-                    ],
-                    "id": "44ec22a8-4870-4d31-b223-8bae451d3f0a",
-                    "type": "sequence"
+                      "op": "=="
+                    },
+                    "children": [],
+                    "id": "4d6f252d-a2d0-4eaa-94dc-aeaa282c52ec",
+                    "type": "condition"
                   },
                   {
                     "activated": true,
                     "metadata": {
                       "label": ""
                     },
-                    "properties": {},
+                    "properties": {
+                      "name": "Wait",
+                      "inputParams": [
+                        {
+                          "key": "time",
+                          "type": "integer",
+                          "value": "3"
+                        }
+                      ],
+                      "outputParams": []
+                    },
                     "children": [],
-                    "id": "70f10ef4-a20a-47b5-b878-5db5015c4a36",
-                    "type": "success"
+                    "id": "230b9e88-428f-4bd1-955f-99a7b7228879",
+                    "type": "action"
+                  },
+                  {
+                    "activated": true,
+                    "metadata": {
+                      "label": ""
+                    },
+                    "properties": {
+                      "op1": {
+                        "type": "entityKnowledge",
+                        "value": "lastState"
+                      },
+                      "op2": {
+                        "type": "boolean",
+                        "value": "true"
+                      },
+                      "op": "=="
+                    },
+                    "children": [],
+                    "id": "5d25ef5c-4ac8-4eb9-ab85-9d04fa0f6179",
+                    "type": "condition"
+                  },
+                  {
+                    "activated": true,
+                    "metadata": {
+                      "label": ""
+                    },
+                    "properties": {
+                      "name": "Say",
+                      "inputParams": [
+                        {
+                          "key": "message",
+                          "type": "string",
+                          "value": "Alarm!"
+                        }
+                      ],
+                      "outputParams": []
+                    },
+                    "children": [],
+                    "id": "b7a30249-bce3-46e0-a651-207cb0553f15",
+                    "type": "action"
                   }
                 ],
-                "id": "5b07b15d-41f9-4880-bf87-4f440bb341cf",
-                "type": "priority"
+                "id": "2e433450-625d-4beb-8a65-343baa7bab3b",
+                "type": "sequence"
               }
             ],
-            "id": "4231d5a5-ff0d-437c-b0c6-fec1f5519e45",
-            "type": "sequence"
-          },
-          {
-            "activated": false,
-            "metadata": {
-              "label": ""
-            },
-            "properties": {
-              "name": "Say",
-              "inputParams": [
-                {
-                  "key": "message",
-                  "type": "string",
-                  "value": "Alarm!"
-                }
-              ],
-              "outputParams": []
-            },
-            "children": [],
-            "id": "b7a30249-bce3-46e0-a651-207cb0553f15",
-            "type": "action"
+            "id": "971fc688-91c8-47d8-ba9b-f38c837172f1",
+            "type": "until"
           }
         ],
-        "id": "a0ef3783-880b-4a30-8b5b-789981743993",
-        "type": "sequence"
+        "id": "0e1d11f2-08c4-4601-9a36-637bb1f01f3f",
+        "type": "parallel"
       }
     ],
     "id": "65e79d39-0eab-42b8-a251-36eb6147616d"
