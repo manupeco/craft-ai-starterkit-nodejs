@@ -51,7 +51,7 @@
             "type": "action"
           },
           {
-            "activated": true,
+            "activated": false,
             "metadata": {
               "label": ""
             },
@@ -186,7 +186,7 @@
             "type": "sequence"
           },
           {
-            "activated": true,
+            "activated": false,
             "metadata": {
               "label": ""
             },
