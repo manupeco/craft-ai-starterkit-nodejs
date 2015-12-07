@@ -8,7 +8,243 @@
       "label": ""
     },
     "properties": {},
-    "children": [],
+    "children": [
+      {
+        "activated": true,
+        "metadata": {
+          "label": ""
+        },
+        "properties": {},
+        "children": [
+          {
+            "activated": true,
+            "metadata": {
+              "label": ""
+            },
+            "properties": {
+              "destination": "lastState",
+              "op": {
+                "type": "boolean",
+                "value": "false"
+              }
+            },
+            "children": [],
+            "id": "00f76e1c-2379-4544-9224-d7ace00806ae",
+            "type": "set"
+          },
+          {
+            "activated": true,
+            "metadata": {
+              "label": ""
+            },
+            "properties": {
+              "statusCondition": "failsIfAnyFails",
+              "retryPolicy": "propagateToRunning"
+            },
+            "children": [
+              {
+                "activated": true,
+                "metadata": {
+                  "label": "Retrieve Alarm State When It Changes"
+                },
+                "properties": {
+                  "op1": {
+                    "type": "boolean",
+                    "value": "false"
+                  },
+                  "op2": {
+                    "type": "boolean",
+                    "value": "true"
+                  },
+                  "op": "=="
+                },
+                "children": [
+                  {
+                    "activated": true,
+                    "metadata": {
+                      "label": ""
+                    },
+                    "properties": {
+                      "name": "WaitForAlarmStateChange",
+                      "inputParams": [
+                        {
+                          "key": "previousState",
+                          "type": "entityKnowledge",
+                          "value": "lastState"
+                        }
+                      ],
+                      "outputParams": [
+                        {
+                          "key": "state",
+                          "type": "entityKnowledge",
+                          "value": "lastState"
+                        }
+                      ]
+                    },
+                    "children": [],
+                    "id": "3aecc41d-ee75-4847-b46e-8a3d36494cfb",
+                    "type": "action"
+                  }
+                ],
+                "id": "3590af88-7c27-4117-8619-16a9f2333ff2",
+                "type": "until"
+              },
+              {
+                "activated": true,
+                "metadata": {
+                  "label": ""
+                },
+                "properties": {
+                  "op1": {
+                    "type": "boolean",
+                    "value": "false"
+                  },
+                  "op2": {
+                    "type": "boolean",
+                    "value": "true"
+                  },
+                  "op": "=="
+                },
+                "children": [
+                  {
+                    "activated": true,
+                    "metadata": {
+                      "label": ""
+                    },
+                    "properties": {
+                      "active": "true"
+                    },
+                    "children": [
+                      {
+                        "activated": true,
+                        "metadata": {
+                          "label": ""
+                        },
+                        "properties": {},
+                        "children": [
+                          {
+                            "activated": true,
+                            "metadata": {
+                              "label": ""
+                            },
+                            "properties": {
+                              "op1": {
+                                "type": "entityKnowledge",
+                                "value": "lastState"
+                              },
+                              "op2": {
+                                "type": "boolean",
+                                "value": "true"
+                              },
+                              "op": "=="
+                            },
+                            "children": [],
+                            "id": "8cef1e99-212a-4e2d-ba41-4a8599703fae",
+                            "type": "condition"
+                          },
+                          {
+                            "activated": true,
+                            "metadata": {
+                              "label": ""
+                            },
+                            "properties": {
+                              "name": "Wait",
+                              "inputParams": [
+                                {
+                                  "key": "time",
+                                  "type": "integer",
+                                  "value": "3"
+                                }
+                              ],
+                              "outputParams": []
+                            },
+                            "children": [],
+                            "id": "b554fb88-ed3f-45cf-baa0-82d78cf62350",
+                            "type": "action"
+                          },
+                          {
+                            "activated": true,
+                            "metadata": {
+                              "label": ""
+                            },
+                            "properties": {
+                              "op1": {
+                                "type": "entityKnowledge",
+                                "value": "lastState"
+                              },
+                              "op2": {
+                                "type": "boolean",
+                                "value": "true"
+                              },
+                              "op": "=="
+                            },
+                            "children": [],
+                            "id": "11228c8d-bf97-4a19-8de4-6502eaba5078",
+                            "type": "condition"
+                          },
+                          {
+                            "activated": true,
+                            "metadata": {
+                              "label": ""
+                            },
+                            "properties": {
+                              "name": "NotifyAlarm",
+                              "inputParams": [],
+                              "outputParams": []
+                            },
+                            "children": [],
+                            "id": "3005e6ff-07aa-4d44-9053-f9343812f26e",
+                            "type": "action"
+                          },
+                          {
+                            "activated": true,
+                            "metadata": {
+                              "label": ""
+                            },
+                            "properties": {
+                              "name": "Stall",
+                              "inputParams": [],
+                              "outputParams": []
+                            },
+                            "children": [],
+                            "id": "6f14d2f4-5a2a-4589-a34b-562871f1d746",
+                            "type": "action"
+                          }
+                        ],
+                        "id": "4bcea209-fc83-4672-9b67-959f65e177e3",
+                        "type": "sequence"
+                      },
+                      {
+                        "activated": true,
+                        "metadata": {
+                          "label": ""
+                        },
+                        "properties": {
+                          "name": "Stall",
+                          "inputParams": [],
+                          "outputParams": []
+                        },
+                        "children": [],
+                        "id": "48451906-ef09-43fb-b77d-60fc8501937b",
+                        "type": "action"
+                      }
+                    ],
+                    "id": "bd697636-24a8-4e44-baca-743c09930ec7",
+                    "type": "priority"
+                  }
+                ],
+                "id": "a92e7b4d-7a1e-4db6-b13e-96c45a14e801",
+                "type": "until"
+              }
+            ],
+            "id": "e68c00f1-5bf6-4072-8b0a-8f19e49c3195",
+            "type": "parallel"
+          }
+        ],
+        "id": "e8df7cc7-2c38-4902-805d-f8a26cce91b3",
+        "type": "sequence"
+      }
+    ],
     "id": "d1ccf1bb-26c3-4338-aefb-2ec82635452a"
   }
 ]
