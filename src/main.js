@@ -21,9 +21,13 @@ loadCfg()
           console.log(`#${agentId}: "My name is ${input.name}."`);
           success();
         }))
-      .then(() => instance.update(500));
+      .then(() => instance.update(500))
+      .catch((err) => {
+        console.log(`Error during the instance lifetime, check 'https://workbench.craft.ai/instances/${instance.cfg.owner}/${instance.cfg.name}/${instance.cfg.version}/${instance.id}/monitor' for further information.`);
+        console.log(err);
+      });
   })
   .catch((err) => {
-    console.log('Unexpected error!');
+    console.log(`Error during instance creation.`);
     console.log(err);
   });
